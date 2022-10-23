@@ -10,17 +10,6 @@ Harmonic <- function(theta, K){
   return(cbind(apply(t, 2, cos), apply(t, 2, sin)))
 }
 
-convert<- function(WD){
-  ################################################################
-  ## Maps the angles from [-pi, pi] to the bearing [0,2*pi]
-  ################################################################
-  # WD - wind direction that is to be converted
-  # Map the angles to [0,2pi]
-  WD<- ifelse(WD<0 ,2*pi + WD, WD)
-  # Change the angles to the navigational-bearing scale
-  return(WD.bearing<- (pi/2-WD)%%(2*pi) )
-}
-
 bin<- function(WD){
   ############################################################
   ## Bins the data with respect to wind direction
