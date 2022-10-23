@@ -1,4 +1,4 @@
-load("Rworkspace/WindData.RData")
+load("WindData.RData")
 # Define the wind speed and wind direction
 WS = WSWD_CESAR$z10
 WD = convert(WSWD_CESAR$z10.1 * pi/180)
