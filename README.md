@@ -11,6 +11,6 @@ The **Example.R** provides an example for using `WeiHarReg` function to estimate
 
 An example data set to wich `WeiHarReg` can be applied. The folder contains the **WindData.RData**, which contains wind speed and wind direction observations measured every 10-min during the month of January over the course of 18 years at the Cabauw experimental site for atmospheric research (Cesar) site. 
 
-* Supplementary material
+* Supplementary Material
 
 Contains the supplemanetary material pertaining to the manuscript.
