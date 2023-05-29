@@ -29,7 +29,7 @@ bin<- function(WD){
   BIN <- dir.binned
 }
 
-WeiHarReg = function(WS, WD, K, p = c(0.5, 0.95)){
+BWHR = function(WS, WD, K, p = c(0.5, 0.95)){
   ############################################################
   ## Computes the conditional curves of the directional wind 
   ## speed distribution
