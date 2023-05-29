@@ -1,0 +1,29 @@
+library("quantreg")
+library("splines")
+library("pbs")
+QRpred.win<- QRpred.sum<- array(dim = c(10, 629, 3))
+
+xg.qr = seq(0, 2*pi, 0.01)
+inner_knots<- seq.int(0+10*pi/180, 2*pi-10*pi/180, length.out = 35)
+boundary_knots<- c(0, 2*pi)
+degree<-3
+p <- c(0.5, 0.75, 0.95)
+for (i in 1:10) {
+  Data.win<- data.frame(WD.qr = win.dir[[i]], WS.qr=win.speed[[i]])
+  QRfit.win<- rq(WS.qr ~ pbs(WD.qr, knots = inner_knots, degree = degree , Boundary.knots = boundary_knots), tau = p, data = Data.win)
+  QRpred.win[i,,]<- predict(QRfit.win, data.frame(WD.qr = xg.qr))
+  
+   Data.sum<- data.frame(WD.qr = sum.dir[[i]], WS.qr=sum.speed[[i]])
+  QRfit.sum<- rq(WS.qr ~ pbs(WD.qr, knots = inner_knots, degree = degree , Boundary.knots = boundary_knots), tau = p, data = Data.sum)
+  QRpred.sum[i,,]<- predict(QRfit.sum, data.frame(WD.qr = xg.qr))
+}
+
+for (i in 1:10) {
+  Data.win<- data.frame(WD.qr = win.dir[[i]], WS.qr=win.speed[[i]])
+  QRfit.win.uneq<- rq(WS.qr ~ pbs(WD.qr, df = 12, degree = degree , Boundary.knots = boundary_knots), tau = p, data = Data.win)
+  QRpred.win.uneq[i,,]<- predict(QRfit.win.uneq, data.frame(WD.qr = xg.qr))
+  
+   Data.sum<- data.frame(WD.qr = sum.dir[[i]], WS.qr=sum.dir[[i]])
+  QRfit.sum.uneq<- rq(WS.qr ~ pbs(WD.qr, df =12, degree = degree , Boundary.knots = boundary_knots), tau = p, data = Data.sum)
+  QRpred.sum.uneq[i,,]<- predict(QRfit.sum.uneq, data.frame(WD.qr = xg.qr))
+}
