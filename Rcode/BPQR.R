@@ -1,7 +1,7 @@
 library("quantreg")
 library("splines")
 library("pbs")
-BPQR = function(WS, WD, df, p = c(0.5, 0.95){
+BPQR = function(WS, WD, df, p = c(0.5, 0.95)){
 ############################################################
   ## Computes the conditional curves of the directional wind 
   ## speed distribution using the Periodic B-spline Quantile Regression method
@@ -19,5 +19,5 @@ Data.win<- data.frame(WD.qr = WD , WS.qr = WS)
 # Fit a quantile regressions with periodic b-splines
 QRfit<- rq(WS.qr ~ pbs(WD.qr, df = df, Boundary.knots = boundary_knots), tau = p, data = Data.win)
 # Use the fitted model to make prediction
-QRpred<- predict(QRfit.win, data.frame(WD.qr = xg.qr))
+QRpred<- predict(QRfit, data.frame(WD.qr = xg.qr))
 }
