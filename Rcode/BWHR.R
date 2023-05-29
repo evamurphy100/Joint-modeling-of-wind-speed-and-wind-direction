@@ -15,7 +15,7 @@ bin<- function(WD){
   ## Bins the data with respect to wind direction
   ############################################################
   # WD - wind direction to be binned
-  # Length of a bin
+  # Length of a bin: by 10 degrees
   deg<- 10*pi/180
   # Define the range of each bin
   dir.breaks <- seq(0,  2*pi, deg)
